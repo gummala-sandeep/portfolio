@@ -1,0 +1,171 @@
+/* ═══════════════════
+   PROJECTS — Row Layout
+   ═══════════════════ */
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+.project-row {
+  padding: clamp(20px, 3vh, 36px) 0;
+  transition: opacity 0.5s var(--curve);
+}
+
+.project-row.dimmed {
+  opacity: 0.3;
+}
+
+.project-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.project-left {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 40px);
+}
+
+.project-index {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.project-title {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.4rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  transition: color 0.4s var(--curve);
+}
+
+.project-row.active .project-title {
+  color: var(--accent);
+}
+
+.project-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: block;
+}
+
+.project-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.project-tech {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tech-pill {
+  padding: 5px 14px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-secondary);
+  transition: all 0.4s var(--curve);
+  white-space: nowrap;
+}
+
+.project-row.active .tech-pill {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.project-arrow {
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  transition: all 0.5s var(--curve);
+  flex-shrink: 0;
+}
+
+.project-row.active .project-arrow {
+  color: var(--accent);
+  transform: rotate(45deg);
+}
+
+/* ── Expandable desc ── */
+.project-desc {
+  overflow: hidden;
+}
+
+.project-desc-inner {
+  padding: 16px 0 8px calc(clamp(16px, 3vw, 40px) + 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 600px;
+}
+
+/* ── Floating description for last project ── */
+.project-row--last {
+  position: relative;
+}
+
+.project-desc-float {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.project-desc-float-inner {
+  padding: 20px 24px;
+  margin: 0 0 8px calc(clamp(16px, 3vw, 40px) + 3rem);
+  max-width: 600px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+[data-theme="dark"] .project-desc-float-inner {
+  background: var(--bg-secondary);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-top: clamp(20px, 3vh, 36px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .project-row-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-right {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .project-tech {
+    display: none;
+  }
+
+  .project-desc-inner {
+    padding-left: calc(clamp(16px, 3vw, 40px) + 2rem);
+  }
+}

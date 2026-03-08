@@ -1,0 +1,98 @@
+/* ═══════════════════
+   EXPERIENCE
+   ═══════════════════ */
+
+.exp-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-row {
+  padding: clamp(24px, 4vh, 48px) 0;
+}
+
+.exp-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.exp-role {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.exp-company {
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 4px;
+  display: block;
+}
+
+.exp-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.exp-period {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.exp-type {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 3px 12px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+}
+
+.exp-points {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 700px;
+}
+
+.exp-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+
+.exp-point-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 4px;
+  font-size: 0.85rem;
+}
+
+.exp-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-top: clamp(24px, 4vh, 48px);
+}
+
+@media (max-width: 600px) {
+  .exp-row-top {
+    flex-direction: column;
+  }
+
+  .exp-meta {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 12px;
+  }
+}

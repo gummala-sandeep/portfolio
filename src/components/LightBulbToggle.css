@@ -1,0 +1,340 @@
+/* ═══════════════════════════════
+   LightBulb Toggle — True 3D
+   ═══════════════════════════════ */
+
+.bulb-toggle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 44px;
+  height: 100px;
+  user-select: none;
+  perspective: 400px;
+}
+
+/* ── Wire ── */
+.bulb-wire {
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom,
+    var(--text-muted) 0%,
+    var(--text-secondary) 100%
+  );
+  border-radius: 1px;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+/* ── 3D Bulb ── */
+.bulb-3d {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  transform-style: preserve-3d;
+  transform: rotateX(5deg);
+  transition: transform 0.6s var(--curve);
+}
+
+/* ── Glass Bulb — 3D sphere effect ── */
+.bulb-glass-3d {
+  width: 28px;
+  height: 30px;
+  border-radius: 50% 50% 42% 42%;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+
+  /* Multi-layered gradient for 3D sphere illusion */
+  background:
+    radial-gradient(ellipse at 35% 25%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(200, 200, 200, 0.06) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 -4px 8px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.8s var(--curve);
+}
+
+/* Highlight — top-left specular reflection */
+.glass-highlight {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  width: 10px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.35) 0%,
+    transparent 70%
+  );
+  transition: opacity 0.6s;
+}
+
+/* Bottom reflection arc */
+.glass-reflection {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  translate: -50% 0;
+  width: 16px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  transition: opacity 0.6s;
+}
+
+/* Filament coils */
+.filament-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.filament-coil {
+  width: 8px;
+  height: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  transition: all 0.6s var(--curve);
+}
+
+.filament-coil-2 {
+  width: 6px;
+  height: 3px;
+}
+
+/* ── ON state — glowing ── */
+.bulb-3d.on .bulb-glass-3d {
+  background:
+    radial-gradient(ellipse at 35% 25%, rgba(255, 255, 255, 0.4) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(232, 197, 71, 0.6) 0%, rgba(232, 197, 71, 0.2) 60%, transparent 80%),
+    linear-gradient(180deg, rgba(255, 230, 100, 0.3) 0%, rgba(232, 197, 71, 0.15) 100%);
+  border-color: rgba(232, 197, 71, 0.4);
+  box-shadow:
+    inset 0 -3px 6px rgba(200, 160, 20, 0.2),
+    inset 0 2px 6px rgba(255, 240, 140, 0.3),
+    0 0 20px rgba(232, 197, 71, 0.5),
+    0 0 50px rgba(232, 197, 71, 0.2),
+    0 0 100px rgba(232, 197, 71, 0.1);
+}
+
+.bulb-3d.on .glass-highlight {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.6) 0%,
+    transparent 60%
+  );
+}
+
+.bulb-3d.on .filament-coil {
+  border-color: #f0d060;
+  background: rgba(240, 208, 96, 0.8);
+  box-shadow: 0 0 6px #e8c547, 0 0 12px rgba(232, 197, 71, 0.4);
+}
+
+/* ── Screw Base — metallic ridges ── */
+.bulb-screw-base {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-top: -3px;
+  z-index: 1;
+}
+
+.screw-ridge {
+  height: 3.5px;
+  border-radius: 1px;
+  transition: all 0.4s;
+
+  /* Metallic gradient for 3D look */
+  background: linear-gradient(
+    90deg,
+    #3a3a3a 0%,
+    #5a5a5a 20%,
+    #6e6e6e 40%,
+    #5a5a5a 60%,
+    #4a4a4a 80%,
+    #3a3a3a 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.screw-ridge:nth-child(1) { width: 20px; }
+.screw-ridge:nth-child(2) { width: 18px; }
+.screw-ridge:nth-child(3) { width: 16px; }
+
+.bulb-3d.on .screw-ridge {
+  background: linear-gradient(
+    90deg,
+    #5a5540 0%,
+    #8a8060 20%,
+    #a09870 40%,
+    #8a8060 60%,
+    #6a6550 80%,
+    #5a5540 100%
+  );
+}
+
+.screw-tip {
+  width: 8px;
+  height: 5px;
+  background: linear-gradient(180deg, #555 0%, #333 100%);
+  border-radius: 0 0 4px 4px;
+  margin-top: -1px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bulb-3d.on .screw-tip {
+  background: linear-gradient(180deg, #7a7050 0%, #5a5540 100%);
+}
+
+/* ── Glow layers (light mode only) ── */
+.bulb-glow-inner,
+.bulb-glow-outer,
+.bulb-glow-ambient {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s var(--curve);
+}
+
+.bulb-glow-inner {
+  width: 40px;
+  height: 40px;
+  top: -5px;
+  left: 50%;
+  translate: -50% 0;
+  background: radial-gradient(circle, rgba(232, 197, 71, 0.5) 0%, transparent 70%);
+}
+
+.bulb-glow-outer {
+  width: 80px;
+  height: 80px;
+  top: -25px;
+  left: 50%;
+  translate: -50% 0;
+  background: radial-gradient(circle, rgba(232, 197, 71, 0.2) 0%, transparent 70%);
+}
+
+.bulb-glow-ambient {
+  width: 140px;
+  height: 140px;
+  top: -55px;
+  left: 50%;
+  translate: -50% 0;
+  background: radial-gradient(circle, rgba(232, 197, 71, 0.08) 0%, transparent 70%);
+}
+
+.bulb-3d.on .bulb-glow-inner {
+  opacity: 1;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.bulb-3d.on .bulb-glow-outer {
+  opacity: 1;
+  animation: glowPulse 3s ease-in-out infinite 0.5s;
+}
+
+.bulb-3d.on .bulb-glow-ambient {
+  opacity: 1;
+  animation: glowPulse 4s ease-in-out infinite 1s;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* ── Pull Chain ── */
+.bulb-chain-zone {
+  position: absolute;
+  bottom: -5px;
+  width: 30px;
+  height: 50px;
+  z-index: 3;
+}
+
+.bulb-pull-chain {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  cursor: grab;
+  padding: 4px;
+}
+
+.bulb-pull-chain:active {
+  cursor: grabbing;
+}
+
+.chain-link {
+  width: 4px;
+  height: 6px;
+  border: 1px solid var(--text-muted);
+  border-radius: 2px;
+  transition: border-color 0.3s;
+}
+
+.chain-bead {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 1px;
+  transition: all 0.3s ease;
+
+  /* 3D metallic bead */
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.3) 0%,
+    var(--text-secondary) 40%,
+    rgba(80, 80, 80, 0.8) 100%
+  );
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.35),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.bulb-pull-chain:hover .chain-bead {
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.5) 0%,
+    var(--accent) 60%,
+    var(--accent-hover) 100%
+  );
+  box-shadow:
+    0 2px 10px var(--accent-dim),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.15);
+}
+
+.bulb-pull-chain:hover .chain-link {
+  border-color: var(--accent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bulb-toggle {
+    transform: scale(0.85);
+  }
+}
