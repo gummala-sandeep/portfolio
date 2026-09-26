@@ -117,6 +117,5 @@ export const education = {
 
 export const certifications = [
   "NPTEL — Programming in Java",
-  "NPTEL — The Joy of Computing with Python",
-  "LeetCode: 50+ day streak with 100+ DSA problems solved",
+  "LeetCode: 50+ day streak with 150+ DSA problems solved",
 ];
