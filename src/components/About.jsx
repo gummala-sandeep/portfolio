@@ -64,11 +64,11 @@ const About = () => {
                 <span className="stat-label">Projects Shipped</span>
               </div>
               <div className="stat-item">
-                <span className="stat-value">9.09</span>
+                <span className="stat-value">9.06</span>
                 <span className="stat-label">CGPA</span>
               </div>
               <div className="stat-item">
-                <span className="stat-value">100+</span>
+                <span className="stat-value">150+</span>
                 <span className="stat-label">Problems Solved</span>
               </div>
             </motion.div>
