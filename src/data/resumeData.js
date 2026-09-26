@@ -111,7 +111,7 @@ export const projects = [
 export const education = {
   degree: "Bachelor of Technology",
   institution: "Vishnu Institute of Technology",
-  cgpa: "9.09",
+  cgpa: "9.06",
   period: "2023 – Present",
 };
 
